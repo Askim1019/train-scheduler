@@ -1,0 +1,12 @@
+* {
+    outline: 1px solid red;
+}
+
+.jumbotron {
+    background-color: rgba(33, 140, 228, 0.89);
+}
+
+.jumbotron h1 {
+    font-size: 45px;
+    font-weight: bolder;
+}
