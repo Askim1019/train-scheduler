@@ -14,11 +14,30 @@
   // Make the firebase database call simplified by assignment
   var database = firebase.database();
 
+  // Create submit button function to post data
   $("#add-data").click(function(){
+
+    //Create variables for each data point in the train schedule table
     var trainName = $("#trainName").val().trim();
     var destination = $("#destination").val().trim();
     var frequency = $("#frequency").val().trim();
     var firstTrain = $("#firstTrainTime").val().trim();
     var nextArrival;
     var minutesAway;
+
+    console.log(trainName + " will arrive at " + destination + " in " + minutesAway + " minutes.");
+
+    
+
+    database.ref().push({
+      trainName: trainName,
+      destination: destination,
+      frequency: frequency,
+      firstTrain: firstTrain,
+     /*  nextArrival: nextArrival,
+      minutesAway: minutesAway */
+    });
+
+
+    event.preventDefault();
   });
