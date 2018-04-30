@@ -23,7 +23,7 @@
     console.log("train destination is " + addedData.destination);
     console.log("train frequency is " + addedData.frequency);
     console.log("the next arrival is at " + addedData.nextArrival);
-    console.log("the next train is " + minutesAway + " minutes away");
+    console.log("the next train is " + addedData.minutesAway + " minutes away");
 
     $("tbody").prepend("<tr><td class='text-center'>" + addedData.trainName + "</td>" +
                        "<td class='text-center'>" + addedData.destination + "</td>" +
@@ -89,7 +89,13 @@
       nextArrival: nextArrival,
       minutesAway: minutesAway
     });
- 
+    
+    $("#trainName").val('');
+    $("#destination").val('');
+    $("#frequency").val('');
+    $("#firstTrainTime").val('');
+    
+    
 
     event.preventDefault();
   });
