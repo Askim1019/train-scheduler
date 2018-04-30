@@ -9,7 +9,9 @@
   };
 
   firebase.initializeApp(config);
-
+  
+  
+  // Make the firebase database call simplified by assignment
   var database = firebase.database();
 
 
@@ -30,7 +32,7 @@
                        "<td class='text-center'>" + addedData.minutesAway + "</td></tr>");
   });
 
-  // Make the firebase database call simplified by assignment
+  
  
 
   // Create submit button function to post data
@@ -44,20 +46,42 @@
     var nextArrival;
     var minutesAway;
 
+    // First Train of the Day is 3:00 AM
+    // Assume Train comes every 7 minutes.
+    // Assume the current time is 3:16 AM....
+    // What time would the next train be...? (Use your brain first)
+    // It would be 3:21 -- 5 minutes away
+
+
+    // Solved Mathematically
+    // Test case 2:
+    // 16 - 00 = 16
+    // 16 % 7 = 2 (Modulus is the remainder)
+    // 7 - 2 = 5 minutes away
+    // 5 + 3:16 = 3:21
+   
+    // make a time object of the firstTrain input in 24 hour (capital 'HH') and minute format of current day
+    var firstTrainTime = moment(firstTrain, 'HH:mm').subtract(1, 'years');
+    console.log("The First train time: " + firstTrainTime);
+    // get the current time in minutes moment.js in seconds
+    var currentTime = moment();
+    console.log("Current Time: " + moment(currentTime).format("hh:mm"));
+    // get the difference in the time now and the first train time
+    var diffTime = moment().diff(moment(firstTrainTime), "minutes");
+    console.log("The difference in time: " + diffTime);
+    // get the remainder of the difference and the frequency the train comes
+    var remainder = diffTime % frequency;
+    console.log("the remainder is: " + remainder);
+    // Subtract to get how many minutes until the next train arrives
+    minutesAway = frequency - remainder;
+    console.log("minutes till train: " + minutesAway);
+    // When the next train is due to arrive after calculating how far away it is.
+    nextArrival = moment().add(minutesAway, "minutes").format('hh:mm');
+    console.log("Next train arrival: " + nextArrival);
+
     console.log(trainName + " will arrive at " + destination + " in " + minutesAway + " minutes.");
 
-    var firstTrainTime = ;
-    // get the current time in minutes moment.js in secondsd
-    var currentTime = moment().minutes();
-    console.log(currentTime);
-
-    // the function should return when the next train will arrive based off of the first train time.
-    function calculateNextArrival() {
-      nextArrival = firstTrain
-    }
-    
-
-  /*   database.ref().push({
+    database.ref().push({
       trainName: trainName,
       destination: destination,
       frequency: frequency,
@@ -65,7 +89,7 @@
       nextArrival: nextArrival,
       minutesAway: minutesAway
     });
- */
+ 
 
     event.preventDefault();
   });
