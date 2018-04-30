@@ -10,9 +10,28 @@
 
   firebase.initializeApp(config);
 
+  var database = firebase.database();
+
+
+  database.ref().on("child_added", function(snapshot){
+
+    var addedData = snapshot.val();
+
+    console.log("train name is " + addedData.trainName);
+    console.log("train destination is " + addedData.destination);
+    console.log("train frequency is " + addedData.frequency);
+    console.log("the next arrival is at " + addedData.nextArrival);
+    console.log("the next train is " + minutesAway + " minutes away");
+
+    $("tbody").prepend("<tr><td class='text-center'>" + addedData.trainName + "</td>" +
+                       "<td class='text-center'>" + addedData.destination + "</td>" +
+                       "<td class='text-center'>" + addedData.frequency + "</td>" +
+                       "<td class='text-center'>" + addedData.nextArrival + "</td>" +
+                       "<td class='text-center'>" + addedData.minutesAway + "</td></tr>");
+  });
 
   // Make the firebase database call simplified by assignment
-  var database = firebase.database();
+ 
 
   // Create submit button function to post data
   $("#add-data").click(function(){
@@ -27,17 +46,26 @@
 
     console.log(trainName + " will arrive at " + destination + " in " + minutesAway + " minutes.");
 
+    var firstTrainTime = ;
+    // get the current time in minutes moment.js in secondsd
+    var currentTime = moment().minutes();
+    console.log(currentTime);
+
+    // the function should return when the next train will arrive based off of the first train time.
+    function calculateNextArrival() {
+      nextArrival = firstTrain
+    }
     
 
-    database.ref().push({
+  /*   database.ref().push({
       trainName: trainName,
       destination: destination,
       frequency: frequency,
       firstTrain: firstTrain,
-     /*  nextArrival: nextArrival,
-      minutesAway: minutesAway */
+      nextArrival: nextArrival,
+      minutesAway: minutesAway
     });
-
+ */
 
     event.preventDefault();
   });
