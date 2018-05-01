@@ -8,9 +8,9 @@ Train scheduler is Single Page Application that allows the user to submit a name
 
 To contribute to the project or make your own copy just pull from this repository using git clone:
 
-'''
+```
 git clone https://github.com/Askim1019/train-scheduler.git
-'''
+```
 
 ### Prerequisites
 
