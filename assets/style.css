@@ -1,12 +1,18 @@
 /* *{
     outline: 1px solid red;
 } */
+
+html, body {
+    height: 100%;
+}
+
 body {
     background-image: url("bg-1.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     height: 100vh;
+    margin: 0;
 }
 
 .jumbotron {
