@@ -52,11 +52,11 @@ thead th {
 }
 
 tr th {
-    font-size: 25px;
+    font-size: 20px;
 }
 
 tr td {
-    font-size: 18px;
+    font-size: 16px;
 }
 
 label {
@@ -66,4 +66,26 @@ label {
 
 .btn {
     margin-top: 15px;
+}
+
+.icon-btn {
+    background-color: DodgerBlue;
+    border: none;
+    color: white;
+    padding: 12px 16px;;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.icon-btn:hover {
+    background-color: RoyalBlue;
+}
+
+#trashBtn {
+    background-color: rgb(180, 44, 44);
+}
+
+#trashBtn:hover {
+    background-color: red;
 }

@@ -69,7 +69,9 @@
                        "<td class='text-center'>" + addedData.destination + "</td>" +
                        "<td class='text-center'>" + addedData.frequency + "</td>" +
                        "<td class='text-center'>" + nextArrival+ "</td>" +
-                       "<td class='text-center'>" + minutesAway + "</td></tr>");
+                       "<td class='text-center'>" + minutesAway + "</td>" +
+                       "<td class='text-center'><button class='icon-btn' id=trashBtn><i class='fa fa-trash'></i></button>" + 
+                       "<td class='text-center'><button class='icon-btn' id=editBtn><i class='fa fa-edit'></i></td></tr>");
   });
 
   
