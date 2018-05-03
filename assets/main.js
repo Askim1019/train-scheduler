@@ -1,3 +1,4 @@
+$(document).ready(function(){
  // Initialize Firebase with special api key and config
  var config = {
     apiKey: "AIzaSyDUilhun_95xoPLV1uh2MeWwf9_RlBtXfE",
@@ -20,10 +21,11 @@
   database.ref().on("child_added", function(snapshot){
 
     var addedData = snapshot.val();
-  
+    var id = snapshot.key;
+    console.log(id);
     var nextArrival;
     var minutesAway;
-
+    
       // First Train of the Day is 3:00 AM
     // Assume Train comes every 7 minutes.
     // Assume the current time is 3:16 AM....
@@ -54,25 +56,27 @@
     nextArrival = currentTime.add(minutesAway, "minutes").format('hh:mm');
     console.log("Next train arrival: " + nextArrival);
 
-    console.log(addedData.trainName + " will arrive at " + addedData.destination + " in " + addedData.minutesAway + " minutes.");
-
-
- 
-
-    console.log("train name is " + addedData.trainName);
-    console.log("train destination is " + addedData.destination);
-    console.log("train frequency is " + addedData.frequency);
-    console.log("the next arrival is at " + addedData.nextArrival);
-    console.log("the next train is " + addedData.minutesAway + " minutes away");
-
+    // Add rows of data from firebase call "on child_added"
     $("tbody").prepend("<tr><td class='text-center'>" + addedData.trainName + "</td>" +
                        "<td class='text-center'>" + addedData.destination + "</td>" +
                        "<td class='text-center'>" + addedData.frequency + "</td>" +
                        "<td class='text-center'>" + nextArrival+ "</td>" +
                        "<td class='text-center'>" + minutesAway + "</td>" +
                        "<td class='text-center'><button class='icon-btn' id=trashBtn><i class='fa fa-trash'></i></button>" + 
-                       "<td class='text-center'><button class='icon-btn' id=editBtn><i class='fa fa-edit'></i></td></tr>");
+                       "<td class='text-center'><a id='editLink'><button class='icon-btn' id=editBtn><i class='fa fa-edit'></i></button></td></tr>");
+
+    $("#editLink").attr("href", "#myModal");
+    $("#editLink").attr("rel","modal:open");
+    
+    
+    $("#trashBtn").click(function(){
+      database.ref(id).remove();
+      $("tbody").empty();
+    });
+
   });
+
+
 
   
  
@@ -104,3 +108,4 @@
 
     event.preventDefault();
   });
+});
