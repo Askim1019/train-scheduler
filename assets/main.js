@@ -63,15 +63,17 @@ $(document).ready(function(){
                        "<td class='text-center'>" + nextArrival+ "</td>" +
                        "<td class='text-center'>" + minutesAway + "</td>" +
                        "<td class='text-center'><button class='icon-btn' id=trashBtn><i class='fa fa-trash'></i></button>" + 
-                       "<td class='text-center'><a id='editLink'><button class='icon-btn' id=editBtn><i class='fa fa-edit'></i></button></td></tr>");
+                       "<td class='text-center'><a id='editLink'><button class='icon-btn' id='editBtn'><i class='fa fa-edit'></i></button></td></tr>");
 
     $("#editLink").attr("href", "#myModal");
     $("#editLink").attr("rel","modal:open");
+    $("tr").attr("id", id);
+
     
-    
+
     $("#trashBtn").click(function(){
       database.ref(id).remove();
-      $("tbody").empty();
+      $(`#${id}`).empty();
     });
 
   });
